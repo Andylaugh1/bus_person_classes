@@ -5,7 +5,7 @@ require_relative('../person.rb')
 
 class BusTest < MiniTest::Test
 
-  def setup
+  def setup()
     @bus1 = Bus.new("22", "Ocean Terminal")
     @person1 = Person.new("Juan", 33)
     @person2 = Person.new("Andy", 34)
@@ -26,18 +26,19 @@ class BusTest < MiniTest::Test
   end
 
   def test_add_a_passenger
-    @bus1.add_passenger(@person1, @person2)
-    assert_equal(2, @bus1.passenger_count)
-  end
-
-  def test_drop_off_passenger
-    @bus1.add_passenger(@person1, @person2)
-    @bus1.drop_passenger(@person2)
+    @bus1.add_passenger(@person1)
     assert_equal(1, @bus1.passenger_count)
   end
 
+  def test_drop_off_passenger
+    @bus1.add_passenger(@person2)
+    @bus1.drop_passenger(@person2)
+    assert_equal(0, @bus1.passenger_count)
+  end
+
   def test_empty_the_bus
-    @bus1.add_passenger(@person1, @person2)
+    @bus1.add_passenger(@person1)
+    @bus1.add_passenger(@person1)
     @bus1.empty_bus()
     assert_equal(0, @bus1.passenger_count)
   end

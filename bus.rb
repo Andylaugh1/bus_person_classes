@@ -1,6 +1,6 @@
 class Bus
 
-  attr_reader :number
+  attr_reader :number, :destination
 
   def initialize(number, destination)
     @number = number
@@ -20,16 +20,15 @@ class Bus
     return @passengers.count
   end
 
-  def add_passenger(person, person2)
+  def add_passenger(person)
       @passengers << person
-      @passengers << person2
   end
 
   def drop_passenger(person)
     @passengers.delete(person)
   end
 
-  def empty_bus
+  def empty_bus()
     @passengers = []
   end
 
